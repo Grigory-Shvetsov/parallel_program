@@ -1,0 +1,536 @@
+#include <iostream>
+#include <functional>
+#include <algorithm>
+#include <tuple>
+
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+#include <string>
+
+#include "mpi.h"
+
+void print_matr(double* matr, size_t n) {
+	for (size_t i = 0; i < n; ++i) {
+		for (size_t j = 0; j < n; ++j)
+			//std::cout << matr[i * n + j] << "    ";
+			std::cout << matr[i * n + j] << "\t";
+
+		std::cout << std::endl;
+	}
+}
+
+void print_matr(double* matr, size_t n, size_t m) {
+	for (size_t i = 0; i < n; ++i) {
+		for (size_t j = 0; j < m; ++j)
+			//std::cout << matr[i * n + j] << "    ";
+			std::cout << matr[i * m + j] << "\t";
+
+		std::cout << std::endl;
+	}
+}
+
+
+enum class Method {
+	Jacobi, Seidel
+};
+
+std::string name(const Method method) {
+	return (method == Method::Jacobi) ? std::string("Jacobi") : std::string("Seidel");
+}
+
+enum class Shipment { SendPlusRecv, SendRecv, ISendPlusIRecv };
+
+std::string name(const Shipment shipment) {
+	switch (shipment)
+	{
+	case Shipment::SendPlusRecv:
+		return std::string("Send+Recv");
+	case Shipment::SendRecv:
+		return std::string("SendRecv");
+	default:
+		return std::string("ISend+IRecv");
+	}
+}
+
+// Одна итерация метода Якоби
+// M <= N, N*M - размеры подматрицы
+inline void JacobiIteration(
+	const double* const x1, double* const x2, const size_t M, const size_t N,
+	const std::function<double(const double, const double)> f, const double h,
+	const double d, const double h2, const size_t start_row = 0
+) {
+	for (size_t i = 1; i < M - 1; ++i)
+		for (size_t j = 1; j < N - 1; ++j) {
+			size_t ind = i * N + j;
+			x2[ind] = d * (h2 * f((i + start_row) * h, j * h) +
+				x1[ind - 1] + x1[ind + 1] + x1[ind - N] + x1[ind + N]);
+		}
+}
+
+// Одна итерация метода Зейделя
+// M <= N, N*M - размеры подматрицы
+// red - 0, если красные итерации, 1, если черные
+inline void SeidelIteration(
+	const double* const x1, double* const x2, const size_t M, const size_t N,
+	const std::function<double(double, double)> f, const double h,
+	const double d, const double h2, const size_t red, const size_t start_row = 0
+) {
+	// нужна поправка на номер процесса
+	for (size_t i = 1; i < M - 1; ++i)
+		for (size_t j = 1 + (start_row + i + 1 + red) % 2; j < N - 1; j += 2) {
+			size_t ind = i * N + j;
+			x2[ind] = d * (h2 * f((i + start_row) * h, j * h) +
+				x1[ind - 1] + x1[ind + 1] + x1[ind - N] + x1[ind + N]);
+		}
+}
+
+// результат хранится в x1
+template<Method method>
+void Helmholz_Send_Recv(
+	double* x1, double* x2, size_t N, size_t M, const double eps,
+	const std::function<double(const double, const double)> f,
+	double h, double h2, double d, size_t start_row, size_t& iterCount,
+	int id, int numprocs
+) {
+	double err = eps * 2;
+	iterCount = 0;
+
+	do {
+
+		// собственно сам алгоритм
+		if (method == Method::Jacobi)
+			JacobiIteration(x1, x2, M, N, f, h, d, h2, start_row);
+		else {
+			SeidelIteration(x1, x2, M, N, f, h, d, h2, 0, start_row);
+
+			// Для метода Зейделя нужно два раза синхронизироваться
+			if (id != numprocs - 1) {
+				MPI_Send(x2 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD);
+			}
+
+			if (id != 0) {
+				MPI_Recv(x2, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+				MPI_Send(x2 + N, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD);
+			}
+
+			if (id != numprocs - 1)
+				MPI_Recv(x2 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+			SeidelIteration(x2, x2, M, N, f, h, d, h2, 1, start_row);
+		}
+
+
+		// считаем ошибку
+		double local_err = 0.0;
+		// можно не считать норму на границе, т.к. там ничего не меняется
+		for (size_t i = N; i < N * M - N; ++i)
+			local_err = std::max(local_err, std::abs(x2[i] - x1[i]));
+
+		MPI_Allreduce(&local_err, &err, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+
+		std::swap(x1, x2);
+
+		// отправляем новые данные другим процессам (актуальные данные теперь хранятся в x1)
+		if (id != numprocs - 1) {
+			MPI_Send(x1 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD);
+		}
+
+		if (id != 0) {
+			MPI_Recv(x1, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+			MPI_Send(x1 + N, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD);
+		}
+
+		if (id != numprocs - 1)
+			MPI_Recv(x1 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+
+		iterCount++;
+	} while (err >= eps);
+}
+
+template<Method method>
+void Helmholz_SendRecv(
+	double* x1, double* x2, size_t N, size_t M, const double eps,
+	const std::function<double(const double, const double)> f,
+	double h, double h2, double d, size_t start_row, size_t& iterCount,
+	int id, int numprocs
+) {
+	double err = eps * 2;
+	iterCount = 0;
+
+	do {
+
+		// собственно сам алгоритм
+		if (method == Method::Jacobi)
+			JacobiIteration(x1, x2, M, N, f, h, d, h2, start_row);
+		else {
+			SeidelIteration(x1, x2, M, N, f, h, d, h2, 0, start_row);
+
+			// Для метода Зейделя нужно два раза синхронизироваться
+			if (id != 0)
+				MPI_Sendrecv(x2 + N, N, MPI_DOUBLE, id - 1, 0,
+					x2, N, MPI_DOUBLE, id - 1, 0,
+					MPI_COMM_WORLD, MPI_STATUS_IGNORE
+				);
+
+			if (id != numprocs - 1)
+				MPI_Sendrecv(x2 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0,
+					x2 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0,
+					MPI_COMM_WORLD, MPI_STATUS_IGNORE
+				);
+
+			SeidelIteration(x2, x2, M, N, f, h, d, h2, 1, start_row);
+		}
+
+
+		// считаем ошибку
+		double local_err = 0.0;
+		// можно не считать норму на границе, т.к. там ничего не меняется
+		for (size_t i = N; i < N * M - N; ++i)
+			local_err = std::max(local_err, std::abs(x2[i] - x1[i]));
+
+		MPI_Allreduce(&local_err, &err, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+
+		std::swap(x1, x2);
+
+		// отправляем новые данные другим процессам (актуальные данные теперь хранятся в x1)
+		if (id != 0)
+			MPI_Sendrecv(x1 + N, N, MPI_DOUBLE, id - 1, 0,
+				x1, N, MPI_DOUBLE, id - 1, 0,
+				MPI_COMM_WORLD, MPI_STATUS_IGNORE
+			);
+
+		if (id != numprocs - 1)
+			MPI_Sendrecv(x1 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0,
+				x1 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0,
+				MPI_COMM_WORLD, MPI_STATUS_IGNORE
+			);
+
+		iterCount++;
+	} while (err >= eps);
+}
+
+template<Method method>
+void Helmholz_ISend_IRecv(
+	double* x1, double* x2, size_t N, size_t M, const double eps,
+	const std::function<double(const double, const double)> f,
+	double h, double h2, double d, size_t start_row, size_t& iterCount,
+	int id, int numprocs
+) {
+	double err = eps * 2;
+	iterCount = 0;
+
+	// инициализация запросов
+	MPI_Request* prev_even = new MPI_Request[2], * prev_odd = new MPI_Request[2];
+	if (id != 0) {
+		MPI_Send_init(x1 + N, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD, prev_even);
+		MPI_Recv_init(x1, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD, prev_even + 1);
+
+		MPI_Send_init(x2 + N, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD, prev_odd);
+		MPI_Recv_init(x2, N, MPI_DOUBLE, id - 1, 0, MPI_COMM_WORLD, prev_odd + 1);
+	}
+	MPI_Request* next_even = new MPI_Request[2], * next_odd = new MPI_Request[2];
+	if (id != numprocs - 1) {
+		MPI_Send_init(x1 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD, next_even);
+		MPI_Recv_init(x1 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD, next_even + 1);
+
+		MPI_Send_init(x2 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD, next_odd);
+		MPI_Recv_init(x2 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0, MPI_COMM_WORLD, next_odd + 1);
+	}
+
+
+	do {
+		if (id != 0)
+			MPI_Startall(2, (iterCount % 2 == 0) ? prev_even : prev_odd);
+
+		if (id != numprocs - 1)
+			MPI_Startall(2, (iterCount % 2 == 0) ? next_even : next_odd);
+
+		// собственно сам алгоритм
+		if (method == Method::Jacobi)
+			JacobiIteration(x1 + N, x2 + N, M - 2, N, f, h, d, h2, start_row + 1);
+		else {
+			SeidelIteration(x1 + N, x2 + N, M - 2, N, f, h, d, h2, 0, start_row + 1);
+
+			// Для метода Зейделя нужно два раза синхронизироваться
+			// TODO
+			/*if (id != 0)
+				MPI_Sendrecv(x2 + N, N, MPI_DOUBLE, id - 1, 0,
+					x2, N, MPI_DOUBLE, id - 1, 0,
+					MPI_COMM_WORLD, MPI_STATUS_IGNORE
+				);
+
+			if (id != numprocs - 1)
+				MPI_Sendrecv(x2 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0,
+					x2 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0,
+					MPI_COMM_WORLD, MPI_STATUS_IGNORE
+				);*/
+
+				//SeidelIteration(x2, x2, M, N, f, h, d, h2, 1, start_row);
+		}
+
+		if (id != 0)
+			MPI_Waitall(2, (iterCount % 2 == 0) ? prev_even : prev_odd, MPI_STATUSES_IGNORE);
+
+		if (id != numprocs - 1)
+			MPI_Waitall(2, (iterCount % 2 == 0) ? next_even : next_odd, MPI_STATUSES_IGNORE);
+
+		if (method == Method::Jacobi) {
+			// i = 1
+			for (size_t j = 1; j < N - 1; ++j) {
+				size_t ind = N + j;
+				x2[ind] = d * (h2 * f((1 + start_row) * h, j * h) +
+					x1[ind - 1] + x1[ind + 1] + x1[ind - N] + x1[ind + N]);
+			}
+			// i = M - 2
+			for (size_t j = 1; j < N - 1; ++j) {
+				size_t ind = (M - 2) * N + j;
+				x2[ind] = d * (h2 * f(((M - 2) + start_row) * h, j * h) +
+					x1[ind - 1] + x1[ind + 1] + x1[ind - N] + x1[ind + N]);
+			}
+		}
+		else {
+			// Продолжаем метод Зейделя
+
+			// i = 1
+			for (size_t j = 1 + (start_row) % 2; j < N - 1; j += 2) {
+				size_t ind = N + j;
+				x2[ind] = d * (h2 * f((1 + start_row) * h, j * h) +
+					x1[ind - 1] + x1[ind + 1] + x1[ind - N] + x1[ind + N]);
+			}
+			// i = M - 2
+			for (size_t j = 1 + (start_row + M - 1) % 2; j < N - 1; j += 2) {
+				size_t ind = (M - 2) * N + j;
+				x2[ind] = d * (h2 * f((M - 2 + start_row) * h, j * h) +
+					x1[ind - 1] + x1[ind + 1] + x1[ind - N] + x1[ind + N]);
+			}
+
+			// Теперь черные итерации
+			// 1. Отправляем
+			if (id != 0)
+				MPI_Startall(2, (iterCount % 2 == 1) ? prev_even : prev_odd);
+
+			if (id != numprocs - 1)
+				MPI_Startall(2, (iterCount % 2 == 1) ? next_even : next_odd);
+
+			// 2. Считаем внутри
+			SeidelIteration(x2 + N, x2 + N, M - 2, N, f, h, d, h2, 1, start_row + 1);
+
+			// 3. Дожидаемся новые границы
+			if (id != 0)
+				MPI_Waitall(2, (iterCount % 2 == 1) ? prev_even : prev_odd, MPI_STATUSES_IGNORE);
+
+			if (id != numprocs - 1)
+				MPI_Waitall(2, (iterCount % 2 == 1) ? next_even : next_odd, MPI_STATUSES_IGNORE);
+
+			// 4. Считаем границу
+			// i = 1
+			for (size_t j = 1 + (start_row + 1) % 2; j < N - 1; j += 2) {
+				size_t ind = N + j;
+				x2[ind] = d * (h2 * f((1 + start_row) * h, j * h) +
+					x2[ind - 1] + x2[ind + 1] + x2[ind - N] + x2[ind + N]);
+			}
+			// i = M - 2
+			for (size_t j = 1 + (start_row + M) % 2; j < N - 1; j += 2) {
+				size_t ind = (M - 2) * N + j;
+				x2[ind] = d * (h2 * f(((M - 2) + start_row) * h, j * h) +
+					x2[ind - 1] + x2[ind + 1] + x2[ind - N] + x2[ind + N]);
+			}
+
+		}
+
+
+		// считаем ошибку
+		double local_err = 0.0;
+		// можно не считать норму на границе, т.к. там ничего не меняется
+		for (size_t i = N; i < N * M - N; ++i)
+			local_err = std::max(local_err, std::abs(x2[i] - x1[i]));
+
+		MPI_Allreduce(&local_err, &err, 1, MPI_DOUBLE, MPI_MAX, MPI_COMM_WORLD);
+
+		// TODO
+		std::swap(x1, x2);
+
+		// отправляем новые данные другим процессам (актуальные данные теперь хранятся в x1)
+		/*if (id != 0)
+			MPI_Sendrecv(x1 + N, N, MPI_DOUBLE, id - 1, 0,
+				x1, N, MPI_DOUBLE, id - 1, 0,
+				MPI_COMM_WORLD, MPI_STATUS_IGNORE
+			);
+
+		if (id != numprocs - 1)
+			MPI_Sendrecv(x1 + N * (M - 2), N, MPI_DOUBLE, id + 1, 0,
+				x1 + N * (M - 1), N, MPI_DOUBLE, id + 1, 0,
+				MPI_COMM_WORLD, MPI_STATUS_IGNORE
+			);*/
+
+		iterCount++;
+	} while (err >= eps);
+}
+
+double normInf(
+	const double* x1, size_t N,
+	std::function<double(double, double)> exact
+) {
+	double norm = 0.0;
+	double h = 1.0 / (N - 1);
+	for (size_t i = 0; i < N; ++i)
+		for (size_t j = 0; j < N; ++j)
+			norm = std::max(norm, abs(exact(i * h, j * h) - x1[i * N + j]));
+	return norm;
+}
+
+// ...
+template<Shipment shipment, Method method>
+void HelmholzSolve(
+	double k, const std::function<double(const double, const double)> f,
+	size_t N, double eps,
+	const std::function<double(const double, const double)> exact
+) {
+	int myid, numprocs;
+
+	// Получить общее число процессов в рамках задачи
+	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+	// Получить номер текущего процесса в рамках коммуникатора MPI_COMM_WORLD
+	MPI_Comm_rank(MPI_COMM_WORLD, &myid);
+
+	// Выделяем память, считаем нужные значения, коэффициенты
+	size_t iterCount;
+
+	size_t M_all = (N - 2) / numprocs + 2;
+	size_t M_last = N - (M_all - 2) * (numprocs - 1);
+	size_t M = (myid == numprocs - 1) ? M_last : M_all;
+
+	double* x1 = new double[N * M]();
+	double* x2 = new double[N * M]();
+
+	double h = 1.0 / (N - 1);
+	double h2 = h * h;
+	double d = 1.0 / (4.0 + k * k * h2);
+
+	size_t start_row = myid * (M_all - 2);
+
+	// решаем, замеряем время
+	double t1 = MPI_Wtime();
+	switch (shipment)
+	{
+	case Shipment::SendPlusRecv:
+		Helmholz_Send_Recv<method>(
+			x1, x2, N, M, eps, f, h, h2, d, start_row,
+			iterCount, myid, numprocs
+		);
+		break;
+	case Shipment::SendRecv:
+		Helmholz_SendRecv<method>(
+			x1, x2, N, M, eps, f, h, h2, d, start_row,
+			iterCount, myid, numprocs
+		);
+		break;
+	case Shipment::ISendPlusIRecv:
+		Helmholz_ISend_IRecv<method>(
+			x1, x2, N, M, eps, f, h, h2, d, start_row,
+			iterCount, myid, numprocs
+		);
+		break;
+	}
+	double t2 = MPI_Wtime();
+
+	double time = t2 - t1;
+
+	// собираем итоговое решение
+	double* sol = new double[N * N];
+	for (size_t i = 0; i < N; ++i) {
+		sol[i] = 0.0;
+	}
+	for (size_t i = N * (N - 1); i < N * N; ++i) {
+		sol[i] = 0.0;
+	}
+
+
+	//int* revcounts = new int[numprocs](M_all);
+	int* recvcounts = new int[numprocs];
+	for (size_t i = 0; i < numprocs - 1; ++i)
+		recvcounts[i] = N * (M_all - 2);
+
+	recvcounts[numprocs - 1] = N * (M_last - 2);
+
+	int* displs = new int[numprocs];
+	for (size_t i = 0; i < numprocs; ++i)
+		displs[i] = i * N * (M_all - 2);
+
+	MPI_Gatherv(x1 + N, N * (M - 2), MPI_DOUBLE, sol + N, recvcounts, displs, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+	delete[] recvcounts;
+	delete[] displs;
+	delete[] x1;
+	delete[] x2;
+
+	// Проверяем решение, выводим информацию
+	if (myid == 0) {
+
+		//printf("\n\n");
+		//print_matr(sol, N);
+		//printf("M_all = %d, M_last = %d\n", M_all, M_last);
+		printf("%s, %s: Number of processes = %d, N = %d, eps = %f,time = %f s, iterations = %d, error = %f\n",
+			name(method).c_str(), name(shipment).c_str(), numprocs, N, eps, time, iterCount, normInf(sol, N, exact));
+	}
+	delete[] sol;
+}
+
+// 1. Сколько можно использовать узлов на кластере? - Не более 3
+
+int main(int argc, char** argv)
+{
+	// Инициализация подсистемы MPI
+	MPI_Init(&argc, &argv);
+
+	//size_t N = 10000;
+	//size_t N = 3000;
+	//size_t N = 6000;
+	//size_t N = 13;
+	//size_t N = 20;
+	//size_t N = 500;
+	//size_t N = 5;
+	//size_t N = 9;
+
+	//double k = N*2/3;
+	//double k = N;
+	//auto exact = [](const double x, const double y) -> double {
+	//	return (1 - x) * x * sin(M_PI * y);
+	//	};
+	//auto f = [k](const double x, const double y) -> double {
+	//	return 2 * sin(M_PI * y) + k * k * (1 - x) * x * sin(M_PI * y) +
+	//		M_PI * M_PI * (1 - x) * x * sin(M_PI * y);
+	//	};
+
+	//double eps = 1e-4;
+	double eps = 1e-6;
+
+	for (auto [N, k1] : {
+		//std::make_pair<size_t, double>(10000, 10000.0),
+		std::make_pair<size_t, double>(10000, 6666.0)
+		//std::make_pair<size_t, double>(500, 500.0)
+		}) {
+
+		size_t k = k1;
+
+		auto exact = [](const double x, const double y) -> double {
+			return (1 - x) * x * sin(M_PI * y);
+			};
+		auto f = [k](const double x, const double y) -> double {
+			return 2 * sin(M_PI * y) + k * k * (1 - x) * x * sin(M_PI * y) +
+				M_PI * M_PI * (1 - x) * x * sin(M_PI * y);
+			};
+
+		//HelmholzSolve<Shipment::SendPlusRecv, Method::Jacobi>(k, f, N, eps, exact);
+		//HelmholzSolve<Shipment::SendRecv, Method::Jacobi>(k, f, N, eps, exact);
+		HelmholzSolve<Shipment::ISendPlusIRecv, Method::Jacobi>(k, f, N, eps, exact);
+
+		//HelmholzSolve<Shipment::SendPlusRecv, Method::Seidel>(k, f, N, eps, exact);
+		//HelmholzSolve<Shipment::SendRecv, Method::Seidel>(k, f, N, eps, exact);
+		HelmholzSolve<Shipment::ISendPlusIRecv, Method::Seidel>(k, f, N, eps, exact);
+
+	}
+
+	MPI_Finalize();
+	return 0;
+}

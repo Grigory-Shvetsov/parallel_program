@@ -1,0 +1,2947 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    114513,       2939]
+NotebookOptionsPosition[    106314,       2774]
+NotebookOutlinePosition[    106740,       2791]
+CellTagsIndexPosition[    106697,       2788]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Eps = 0.0001, N = 1000", "Section",
+ CellChangeTimes->{{3.9098809501010637`*^9, 
+  3.909880965149991*^9}},ExpressionUUID->"ae246a8e-2003-4b9e-85b4-\
+9d9df3feb34a"],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi: count = 57", "Subsection",
+ CellChangeTimes->{{3.909882914297966*^9, 
+  3.9098829584147577`*^9}},ExpressionUUID->"d8654ae7-717c-44d9-8dde-\
+6a74d7c39b86"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l1", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.91358"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.55361"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "4.94363"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.19363"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "7.21911"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "8.05422"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "8.73652"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10.0168"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "7.07007"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p1", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l1", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Red"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+   3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+   3.909881218721159*^9}, {3.909881282967498*^9, 3.9098813747041035`*^9}, 
+   3.9098814521268406`*^9, {3.9098836533810606`*^9, 3.9098836543563786`*^9}, 
+   3.909883794376079*^9, 3.9098842467034397`*^9, {3.9098852050933027`*^9, 
+   3.909885209822383*^9}},
+ CellLabel->"In[40]:=",ExpressionUUID->"e12c7104-8d39-4351-afa0-48fef88126d0"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.91358}, {4., 3.55361}, {6., 4.94363}, {8., 6.19363}, {
+       10., 7.21911}, {12., 8.05422}, {14., 8.73652}, {16., 10.0168}, {18., 
+       7.07007}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.91358}}, {{4., 3.55361}}, {{6., 4.94363}}, {{8., 6.19363}}, {{10., 
+      7.21911}}, {{12., 8.05422}}, {{14., 8.73652}}, {{16., 10.0168}}, {{18., 
+      7.07007}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 10.0168}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.90988424706306*^9, 3.909884251475979*^9}, 
+   3.9098843168723917`*^9, 3.9098843476913614`*^9, 3.90988439043554*^9, 
+   3.9098844227332687`*^9, {3.909885206302204*^9, 3.9098852103670454`*^9}, 
+   3.910426330286167*^9, {3.9104322404496937`*^9, 3.9104322704184494`*^9}},
+ CellLabel->"Out[41]=",ExpressionUUID->"516dac23-6bed-49ca-9dcc-fd3c07d17fde"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel: count = 31", "Subsection",
+ CellChangeTimes->{{3.909882945798588*^9, 
+  3.9098829686076417`*^9}},ExpressionUUID->"af43c3a5-8394-4629-9836-\
+8d9e311fde05"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l2", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2.10615"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.32254"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "4.3719"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "5.51961"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "6.1445"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "7.05159"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "9.31927"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "7.81336"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "8.18907"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p2", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l2", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Blue"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+   3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+   3.909881218721159*^9}, {3.909881282967498*^9, 3.9098815163326697`*^9}, 
+   3.9098837975889874`*^9, 3.909884241683303*^9},
+ CellLabel->"In[42]:=",ExpressionUUID->"0db18117-ba86-4e52-98bf-430442ce8334"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 2.10615}, {4., 3.32254}, {6., 4.3719}, {8., 5.51961}, {
+       10., 6.1445}, {12., 7.05159}, {14., 9.31927}, {16., 7.81336}, {18., 
+       8.18907}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      2.10615}}, {{4., 3.32254}}, {{6., 4.3719}}, {{8., 5.51961}}, {{10., 
+      6.1445}}, {{12., 7.05159}}, {{14., 9.31927}}, {{16., 7.81336}}, {{18., 
+      8.18907}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 9.31927}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.9098842433401546`*^9, 3.9098842516009707`*^9}, 
+   3.909884316982437*^9, 3.909884347769905*^9, 3.909884390513385*^9, 
+   3.9098844228273573`*^9, 3.910426330365493*^9, {3.910432240791592*^9, 
+   3.910432270532934*^9}},
+ CellLabel->"Out[43]=",ExpressionUUID->"f70b87f2-e56a-4201-ac9e-c0508a8ee014"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.9098836628239555`*^9, 3.909883772968052*^9}, {
+  3.909883879155616*^9, 3.909883982922628*^9}, {3.9098840510480995`*^9, 
+  3.9098840697090297`*^9}, {3.9098842152432785`*^9, 3.9098842360720263`*^9}},
+ CellLabel->"In[44]:=",ExpressionUUID->"69caa07e-58af-48a5-b3bc-6dd2a3e75bd0"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p1", ",", "p2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9098815201952705`*^9, 3.9098815244039288`*^9}},
+ CellLabel->"In[45]:=",ExpressionUUID->"8e2f4c84-3727-408d-acc2-0eb7292158c0"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.91358}, {4., 3.55361}, {6., 4.94363}, {8., 6.19363}, {
+        10., 7.21911}, {12., 8.05422}, {14., 8.73652}, {16., 10.0168}, {18., 
+        7.07007}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.91358}}, {{4., 3.55361}}, {{6., 4.94363}}, {{8., 6.19363}}, {{10., 
+       7.21911}}, {{12., 8.05422}}, {{14., 8.73652}}, {{16., 10.0168}}, {{18.,
+        7.07007}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 2.10615}, {4., 3.32254}, {6., 4.3719}, {8., 5.51961}, {
+        10., 6.1445}, {12., 7.05159}, {14., 9.31927}, {16., 7.81336}, {18., 
+        8.18907}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       2.10615}}, {{4., 3.32254}}, {{6., 4.3719}}, {{8., 5.51961}}, {{10., 
+       6.1445}}, {{12., 7.05159}}, {{14., 9.31927}}, {{16., 7.81336}}, {{18., 
+       8.18907}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 10.0168}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9098815250289173`*^9, 3.909882118019207*^9, 3.9098825584543486`*^9, 
+   3.9098828217637367`*^9, 3.90988289741879*^9, 3.9098832197742205`*^9, 
+   3.9098834442746396`*^9, 3.909883606579794*^9, 3.9098838710431843`*^9, {
+   3.909884231101329*^9, 3.9098842516793427`*^9}, 3.909884317029312*^9, 
+   3.9098843478171406`*^9, 3.9098843905758705`*^9, 3.9098844228898687`*^9, 
+   3.9104263304437284`*^9, {3.910432240860247*^9, 3.9104322705823336`*^9}},
+ CellLabel->"Out[45]=",ExpressionUUID->"2e993c40-240d-4b31-82d6-154c62ecf791"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Eps = 0.000001, N = 1000", "Section",
+ CellChangeTimes->{{3.9098809501010637`*^9, 3.909880965149991*^9}, {
+  3.9098815984443283`*^9, 
+  3.9098815986948195`*^9}},ExpressionUUID->"f694cf94-f4d4-4a67-8b25-\
+0922900b5444"],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi: count = 78", "Subsection",
+ CellChangeTimes->{{3.9098830090131903`*^9, 
+  3.9098830288685884`*^9}},ExpressionUUID->"cd6a989c-012f-40a5-9a77-\
+47deaa78250d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l3", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.87578"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.50844"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.135"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.60709"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "7.83158"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "8.88534"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "9.55956"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10.5935"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "7.19548"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p3", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l3", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Red"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+   3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+   3.909881218721159*^9}, {3.909881282967498*^9, 3.9098813747041035`*^9}, 
+   3.9098814521268406`*^9, {3.9098816035888824`*^9, 3.9098816078302107`*^9}, 
+   3.9098819566125383`*^9},
+ CellLabel->"In[46]:=",ExpressionUUID->"473a8624-961b-47db-9e53-05da3f808ce1"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.87578}, {4., 3.50844}, {6., 5.135}, {8., 6.60709}, {10.,
+        7.83158}, {12., 8.88534}, {14., 9.55956}, {16., 10.5935}, {18., 
+       7.19548}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.87578}}, {{4., 3.50844}}, {{6., 5.135}}, {{8., 6.60709}}, {{10., 
+      7.83158}}, {{12., 8.88534}}, {{14., 9.55956}}, {{16., 10.5935}}, {{18., 
+      7.19548}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 10.5935}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.909881378648678*^9, 3.9098814541123037`*^9, 3.90988195824284*^9, 
+   3.9098821180814943`*^9, 3.9098825585324745`*^9, 3.9098828218419857`*^9, 
+   3.9098828974813147`*^9, 3.909883219852289*^9, 3.909883444337325*^9, 
+   3.9098836066429396`*^9, {3.9098842311638064`*^9, 3.90988425172622*^9}, 
+   3.9098843171238565`*^9, 3.909884347898879*^9, 3.9098843906383266`*^9, 
+   3.9098844229532557`*^9, 3.9104263305229588`*^9, {3.9104322409310594`*^9, 
+   3.9104322706351333`*^9}},
+ CellLabel->"Out[47]=",ExpressionUUID->"aa805641-c4cc-4cf9-a455-24c406ddf7ba"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel: count = 41", "Subsection",
+ CellChangeTimes->{{3.9098830320149612`*^9, 
+  3.909883041004384*^9}},ExpressionUUID->"b1bf4e49-6e56-4cd2-a1d0-\
+11e112b56f87"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l4", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "2.0552"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.40907"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "4.59345"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "5.62409"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "6.54183"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "7.06469"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "7.87278"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "8.61859"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "8.82484"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p4", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l4", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Blue"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+  3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+  3.909881218721159*^9}, {3.909881282967498*^9, 3.9098815163326697`*^9}, {
+  3.9098816117307167`*^9, 3.9098816152842507`*^9}, {3.9098816675374947`*^9, 
+  3.909881720356346*^9}, {3.909882056858619*^9, 3.909882110894191*^9}},
+ CellLabel->"In[48]:=",ExpressionUUID->"ba8ce52c-b2ce-4256-a2e6-86fc49f4d64f"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 2.0552}, {4., 3.40907}, {6., 4.59345}, {8., 5.62409}, {
+       10., 6.54183}, {12., 7.06469}, {14., 7.87278}, {16., 8.61859}, {18., 
+       8.82484}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      2.0552}}, {{4., 3.40907}}, {{6., 4.59345}}, {{8., 5.62409}}, {{10., 
+      6.54183}}, {{12., 7.06469}}, {{14., 7.87278}}, {{16., 8.61859}}, {{18., 
+      8.82484}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 8.82484}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.909881500655596*^9, 3.90988151700526*^9}, 
+   3.9098817225792875`*^9, {3.909882111662512*^9, 3.909882118176177*^9}, 
+   3.909882558610591*^9, 3.909882821920103*^9, 3.9098828975599785`*^9, 
+   3.9098832199148006`*^9, 3.9098834443998194`*^9, 3.909883606705053*^9, {
+   3.909884231210679*^9, 3.9098842517730446`*^9}, 3.9098843171701946`*^9, 
+   3.909884347975202*^9, 3.9098843907171063`*^9, 3.909884423015506*^9, 
+   3.910426330585283*^9, {3.910432241025379*^9, 3.910432270689493*^9}},
+ CellLabel->"Out[49]=",ExpressionUUID->"3b43e5be-49a1-44ba-8911-e85601a47b0b"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p3", ",", "p4"}], "]"}]], "Input",
+ CellChangeTimes->{{3.9098815201952705`*^9, 3.9098815244039288`*^9}, {
+  3.909882122447386*^9, 3.9098821232461615`*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"3a94d7ac-6797-4ae3-ad62-693466a562d1"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.87578}, {4., 3.50844}, {6., 5.135}, {8., 6.60709}, {
+        10., 7.83158}, {12., 8.88534}, {14., 9.55956}, {16., 10.5935}, {18., 
+        7.19548}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.87578}}, {{4., 3.50844}}, {{6., 5.135}}, {{8., 6.60709}}, {{10., 
+       7.83158}}, {{12., 8.88534}}, {{14., 9.55956}}, {{16., 10.5935}}, {{18.,
+        7.19548}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 2.0552}, {4., 3.40907}, {6., 4.59345}, {8., 5.62409}, {
+        10., 6.54183}, {12., 7.06469}, {14., 7.87278}, {16., 8.61859}, {18., 
+        8.82484}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       2.0552}}, {{4., 3.40907}}, {{6., 4.59345}}, {{8., 5.62409}}, {{10., 
+       6.54183}}, {{12., 7.06469}}, {{14., 7.87278}}, {{16., 8.61859}}, {{18.,
+        8.82484}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 10.5935}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9098815250289173`*^9, {3.9098821148414497`*^9, 3.9098821240295644`*^9}, 
+   3.9098825586417737`*^9, 3.90988282198252*^9, 3.909882897638381*^9, 
+   3.909883219961663*^9, 3.9098834444466963`*^9, 3.9098836067519217`*^9, {
+   3.90988423124193*^9, 3.9098842518199205`*^9}, 3.9098843172172627`*^9, 
+   3.909884348021516*^9, 3.909884390763985*^9, 3.909884423062471*^9, 
+   3.9104263306481543`*^9, {3.9104322410775204`*^9, 3.9104322707263737`*^9}},
+ CellLabel->"Out[50]=",ExpressionUUID->"d75622cb-7c34-4943-bcd9-1d181ad55a75"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Eps = 0.0001, N = 10000", "Section",
+ CellChangeTimes->{{3.9098809501010637`*^9, 3.909880965149991*^9}, 
+   3.9098821449414845`*^9},ExpressionUUID->"bba70035-a008-4461-a6d8-\
+a2b718fdb466"],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi_1: count =  68", "Subsection",
+ CellChangeTimes->{{3.9098830493233347`*^9, 3.909883090204417*^9}, {
+  3.910425692720102*^9, 
+  3.9104256929080286`*^9}},ExpressionUUID->"9f02e13f-9dee-4588-9728-\
+8fb682bfa51c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l5", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.93876"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.66866"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.31999"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.84424"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "8.27836"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "9.4385"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "10.0114"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10.8912"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "11.3356"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p5", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l5", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", "Red", "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+   3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+   3.909881218721159*^9}, {3.909881282967498*^9, 3.9098813747041035`*^9}, 
+   3.9098814521268406`*^9, {3.9098821489077606`*^9, 3.909882222233761*^9}, {
+   3.910425788000088*^9, 3.9104258366067796`*^9}, {3.9104262085030556`*^9, 
+   3.910426208837634*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"fb60c2fb-6fd7-4d31-9f8b-e1dc58384968"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      LineBox[{{2., 1.93876}, {4., 3.66866}, {6., 5.31999}, {8., 6.84424}, {
+       10., 8.27836}, {12., 9.4385}, {14., 10.0114}, {16., 10.8912}, {18., 
+       11.3356}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.93876}}, {{4., 3.66866}}, {{6., 5.31999}}, {{8., 6.84424}}, {{10., 
+      8.27836}}, {{12., 9.4385}}, {{14., 10.0114}}, {{16., 10.8912}}, {{18., 
+      11.3356}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 11.3356}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.909881378648678*^9, 3.9098814541123037`*^9, 3.909882117861866*^9, 
+   3.9098822241435194`*^9, 3.909882558704338*^9, 3.9098828220450077`*^9, 
+   3.909882897700972*^9, 3.909883220008627*^9, 3.9098834445093155`*^9, 
+   3.9098836068304796`*^9, {3.9098842312887993`*^9, 3.9098842518668766`*^9}, 
+   3.909884317279766*^9, 3.9098843480849857`*^9, 3.9098843908267345`*^9, 
+   3.909884423156585*^9, 3.910425840451559*^9, 3.910426209363496*^9, 
+   3.9104263307267714`*^9, {3.910432241172358*^9, 3.9104322707812457`*^9}},
+ CellLabel->"Out[52]=",ExpressionUUID->"2a43f106-cec1-4e9a-aef5-cbab298abeb3"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi_2: count = 68", "Subsection",
+ CellChangeTimes->{{3.9104257134672394`*^9, 3.910425741292379*^9}, {
+  3.9104258452527347`*^9, 
+  3.910425845460372*^9}},ExpressionUUID->"a8e16ee7-c3ad-4b0c-9166-\
+7d03fb63cf4d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l6", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.97972"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.7981"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.60861"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "7.45988"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "9.29932"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "10.6175"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "11.766"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "12.7829"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "13.4464"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p6", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l6", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Red"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9104258578300047`*^9, 3.910425919884598*^9}, {
+  3.910426136417081*^9, 3.9104261368645363`*^9}, {3.9104262026847286`*^9, 
+  3.910426204178339*^9}},
+ CellLabel->"In[53]:=",ExpressionUUID->"03da263e-3047-4c99-8f4a-268a27813846"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.97972}, {4., 3.7981}, {6., 5.60861}, {8., 7.45988}, {
+       10., 9.29932}, {12., 10.6175}, {14., 11.766}, {16., 12.7829}, {18., 
+       13.4464}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.97972}}, {{4., 3.7981}}, {{6., 5.60861}}, {{8., 7.45988}}, {{10., 
+      9.29932}}, {{12., 10.6175}}, {{14., 11.766}}, {{16., 12.7829}}, {{18., 
+      13.4464}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 13.4464}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9104259214886475`*^9, 3.9104261376760283`*^9, 3.910426211518771*^9, 
+   3.9104263307899313`*^9, {3.9104322412752857`*^9, 3.910432270847477*^9}},
+ CellLabel->"Out[54]=",ExpressionUUID->"4378a9d7-a5d4-42a4-bf28-deb222d68d37"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p5", ",", "p6", ",", 
+   RowBox[{"PlotRange", "->", "All"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9104262479988375`*^9, 3.910426260116578*^9}},
+ CellLabel->"In[55]:=",ExpressionUUID->"7545737d-d725-4c38-9ba4-53dac37793f7"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.93876}, {4., 3.66866}, {6., 5.31999}, {8., 6.84424}, {
+        10., 8.27836}, {12., 9.4385}, {14., 10.0114}, {16., 10.8912}, {18., 
+        11.3356}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.93876}}, {{4., 3.66866}}, {{6., 5.31999}}, {{8., 6.84424}}, {{10., 
+       8.27836}}, {{12., 9.4385}}, {{14., 10.0114}}, {{16., 10.8912}}, {{18., 
+       11.3356}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.97972}, {4., 3.7981}, {6., 5.60861}, {8., 7.45988}, {
+        10., 9.29932}, {12., 10.6175}, {14., 11.766}, {16., 12.7829}, {18., 
+        13.4464}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.97972}}, {{4., 3.7981}}, {{6., 5.60861}}, {{8., 7.45988}}, {{10., 
+       9.29932}}, {{12., 10.6175}}, {{14., 11.766}}, {{16., 12.7829}}, {{18., 
+       13.4464}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->All,
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.910426261123649*^9, 3.9104263308519583`*^9, {3.910432241329595*^9, 
+   3.9104322708898883`*^9}},
+ CellLabel->"Out[55]=",ExpressionUUID->"6c180b50-1be0-4cc5-8e01-f009bab34137"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel_1: count = 36", "Subsection",
+ CellChangeTimes->{{3.909883095926891*^9, 3.9098831001554556`*^9}, {
+  3.910425696929535*^9, 
+  3.9104256971528606`*^9}},ExpressionUUID->"45ca8279-4c87-4ff6-bcf8-\
+0f6126dc42f4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l7", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.95528"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.67737"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.29357"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.78763"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "8.1696"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "9.18455"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "9.68876"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10.1976"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "10.3124"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p7", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l7", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", "Blue", "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+  3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+  3.909881218721159*^9}, {3.909881282967498*^9, 3.9098815163326697`*^9}, {
+  3.9098821580620055`*^9, 3.9098821619866624`*^9}, {3.909882235603858*^9, 
+  3.909882276843266*^9}, {3.909884419757725*^9, 3.909884419819702*^9}, {
+  3.9104259566721745`*^9, 3.910426023911039*^9}, {3.910426150613143*^9, 
+  3.9104261509940305`*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"07f0053f-7906-4725-9a71-1cc2cb95bbcb"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      LineBox[{{2., 1.95528}, {4., 3.67737}, {6., 5.29357}, {8., 6.78763}, {
+       10., 8.1696}, {12., 9.18455}, {14., 9.68876}, {16., 10.1976}, {18., 
+       10.3124}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.95528}}, {{4., 3.67737}}, {{6., 5.29357}}, {{8., 6.78763}}, {{10., 
+      8.1696}}, {{12., 9.18455}}, {{14., 9.68876}}, {{16., 10.1976}}, {{18., 
+      10.3124}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 10.3124}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.909881500655596*^9, 3.90988151700526*^9}, 
+   3.909882117955945*^9, 3.9098822830711193`*^9, 3.909882558798135*^9, 
+   3.909882822107579*^9, 3.9098828977790723`*^9, 3.909883220087017*^9, 
+   3.9098834445719*^9, 3.909883606893897*^9, {3.9098842313356814`*^9, 
+   3.909884251929291*^9}, 3.9098843173582163`*^9, 3.909884348147564*^9, {
+   3.909884390889697*^9, 3.909884423235875*^9}, 3.9104259609906225`*^9, 
+   3.9104260254009933`*^9, 3.910426151734993*^9, 3.910426330931755*^9, {
+   3.9104322413961706`*^9, 3.9104322709429636`*^9}},
+ CellLabel->"Out[57]=",ExpressionUUID->"c48e6ec3-3899-415f-a74f-29fb2456dcb4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel_ 2 : count = 36", "Subsection",
+ CellChangeTimes->{{3.9104259346518955`*^9, 3.910425936970998*^9}, {
+  3.9104260437567368`*^9, 
+  3.9104260438369045`*^9}},ExpressionUUID->"fb97c1b5-f870-4f2f-8783-\
+0e7b0c54ab9f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l8", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.97489"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.76159"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.52278"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "7.31405"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "9.0474"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "10.0933"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "10.8421"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "11.3022"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "11.3622"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p8", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l8", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Blue"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9104260293272495`*^9, 3.910426102197732*^9}},
+ CellLabel->"In[58]:=",ExpressionUUID->"252ac59c-2605-4a79-aca4-5b00a3b56fda"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.97489}, {4., 3.76159}, {6., 5.52278}, {8., 7.31405}, {
+       10., 9.0474}, {12., 10.0933}, {14., 10.8421}, {16., 11.3022}, {18., 
+       11.3622}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.97489}}, {{4., 3.76159}}, {{6., 5.52278}}, {{8., 7.31405}}, {{10., 
+      9.0474}}, {{12., 10.0933}}, {{14., 10.8421}}, {{16., 11.3022}}, {{18., 
+      11.3622}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 11.3622}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9104260394681206`*^9, 3.910426103010803*^9, 3.910426155099157*^9, 
+   3.910426331006544*^9, {3.910432241461632*^9, 3.910432271000137*^9}},
+ CellLabel->"Out[59]=",ExpressionUUID->"8a9fe46e-5661-485c-b0f5-4f1ca51e3061"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p7", ",", "p8", ",", 
+   RowBox[{"PlotRange", "->", "All"}], ",", 
+   RowBox[{"Axes", "->", "True"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.910426158636653*^9, 3.9104261833997536`*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"95b73781-115a-4e49-9d45-dcf04a79c56a"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.95528}, {4., 3.67737}, {6., 5.29357}, {8., 6.78763}, {
+        10., 8.1696}, {12., 9.18455}, {14., 9.68876}, {16., 10.1976}, {18., 
+        10.3124}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.95528}}, {{4., 3.67737}}, {{6., 5.29357}}, {{8., 6.78763}}, {{10., 
+       8.1696}}, {{12., 9.18455}}, {{14., 9.68876}}, {{16., 10.1976}}, {{18., 
+       10.3124}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.97489}, {4., 3.76159}, {6., 5.52278}, {8., 7.31405}, {
+        10., 9.0474}, {12., 10.0933}, {14., 10.8421}, {16., 11.3022}, {18., 
+        11.3622}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.97489}}, {{4., 3.76159}}, {{6., 5.52278}}, {{8., 7.31405}}, {{10., 
+       9.0474}}, {{12., 10.0933}}, {{14., 10.8421}}, {{16., 11.3022}}, {{18., 
+       11.3622}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->True,
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->All,
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.9104261642469926`*^9, 3.910426183859939*^9}, 
+   3.9104263310741997`*^9, {3.9104322415137672`*^9, 3.9104322710397143`*^9}},
+ CellLabel->"Out[60]=",ExpressionUUID->"c16912b8-4e24-4ea9-a70e-a32f42e5a926"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p5", ",", "p6", ",", "p7", ",", "p8", ",", 
+   RowBox[{"PlotRange", "->", "All"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9098815201952705`*^9, 3.9098815244039288`*^9}, {
+  3.9098823409691305`*^9, 3.9098823418603578`*^9}, {3.9104262856447115`*^9, 
+  3.9104262983465385`*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"18d8ba94-76dd-433a-a894-a64a06caf039"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.93876}, {4., 3.66866}, {6., 5.31999}, {8., 6.84424}, {
+        10., 8.27836}, {12., 9.4385}, {14., 10.0114}, {16., 10.8912}, {18., 
+        11.3356}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.93876}}, {{4., 3.66866}}, {{6., 5.31999}}, {{8., 6.84424}}, {{10., 
+       8.27836}}, {{12., 9.4385}}, {{14., 10.0114}}, {{16., 10.8912}}, {{18., 
+       11.3356}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.97972}, {4., 3.7981}, {6., 5.60861}, {8., 7.45988}, {
+        10., 9.29932}, {12., 10.6175}, {14., 11.766}, {16., 12.7829}, {18., 
+        13.4464}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.97972}}, {{4., 3.7981}}, {{6., 5.60861}}, {{8., 7.45988}}, {{10., 
+       9.29932}}, {{12., 10.6175}}, {{14., 11.766}}, {{16., 12.7829}}, {{18., 
+       13.4464}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.95528}, {4., 3.67737}, {6., 5.29357}, {8., 6.78763}, {
+        10., 8.1696}, {12., 9.18455}, {14., 9.68876}, {16., 10.1976}, {18., 
+        10.3124}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.95528}}, {{4., 3.67737}}, {{6., 5.29357}}, {{8., 6.78763}}, {{10., 
+       8.1696}}, {{12., 9.18455}}, {{14., 9.68876}}, {{16., 10.1976}}, {{18., 
+       10.3124}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.97489}, {4., 3.76159}, {6., 5.52278}, {8., 7.31405}, {
+        10., 9.0474}, {12., 10.0933}, {14., 10.8421}, {16., 11.3022}, {18., 
+        11.3622}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.97489}}, {{4., 3.76159}}, {{6., 5.52278}}, {{8., 7.31405}}, {{10., 
+       9.0474}}, {{12., 10.0933}}, {{14., 10.8421}}, {{16., 11.3022}}, {{18., 
+       11.3622}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->All,
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9098815250289173`*^9, 3.909882118019207*^9, 3.9098823423606105`*^9, 
+   3.909882558860533*^9, 3.9098828221856327`*^9, 3.9098828978415203`*^9, 
+   3.909883220134966*^9, 3.9098834446191225`*^9, 3.909883606940802*^9, {
+   3.9098842313669252`*^9, 3.909884251944914*^9}, 3.9098843174050856`*^9, 
+   3.909884348194377*^9, 3.909884390936554*^9, 3.909884423282197*^9, {
+   3.910426290031659*^9, 3.9104262988072233`*^9}, 3.9104263311374245`*^9, {
+   3.91043224158959*^9, 3.910432271075835*^9}},
+ CellLabel->"Out[61]=",ExpressionUUID->"021977b2-d68e-4323-9a05-af8018ade9bb"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Eps = 0.000001, N = 10000", "Section",
+ CellChangeTimes->{{3.9098809501010637`*^9, 3.909880965149991*^9}, {
+   3.9098815984443283`*^9, 3.9098815986948195`*^9}, 
+   3.9098823623895187`*^9},ExpressionUUID->"6463d418-4c58-460b-97b3-\
+ab55975898a3"],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi_1 : count = 88", "Subsection",
+ CellChangeTimes->{{3.909883106578082*^9, 3.90988313074055*^9}, {
+  3.9104263187344003`*^9, 
+  3.910426318862029*^9}},ExpressionUUID->"90597d87-ef11-4223-9b81-\
+265b05e701d9"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l9", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.94746"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.68482"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.33375"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.83948"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "8.24712"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "9.3376"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "9.94837"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10.7427"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "11.1312"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p9", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l9", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", "Red", "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+   3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+   3.909881218721159*^9}, {3.909881282967498*^9, 3.9098813747041035`*^9}, 
+   3.9098814521268406`*^9, {3.9098816035888824`*^9, 3.9098816078302107`*^9}, 
+   3.9098819566125383`*^9, {3.909882366344631*^9, 3.909882370507642*^9}, {
+   3.9098824432864733`*^9, 3.909882489693776*^9}, {3.910426415355757*^9, 
+   3.9104264200357704`*^9}, {3.9104264604488187`*^9, 
+   3.9104265078403325`*^9}, {3.910426597299409*^9, 3.910426597853792*^9}},
+ CellLabel->"In[62]:=",ExpressionUUID->"94e01efa-4778-4c5c-a7e3-b32eafcd2f93"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      LineBox[{{2., 1.94746}, {4., 3.68482}, {6., 5.33375}, {8., 6.83948}, {
+       10., 8.24712}, {12., 9.3376}, {14., 9.94837}, {16., 10.7427}, {18., 
+       11.1312}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.94746}}, {{4., 3.68482}}, {{6., 5.33375}}, {{8., 6.83948}}, {{10., 
+      8.24712}}, {{12., 9.3376}}, {{14., 9.94837}}, {{16., 10.7427}}, {{18., 
+      11.1312}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 11.1312}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.909881378648678*^9, 3.9098814541123037`*^9, 3.90988195824284*^9, 
+   3.9098821180814943`*^9, 3.909882492211893*^9, 3.909882558939042*^9, 
+   3.909882822263816*^9, 3.909882897951322*^9, 3.909883220197221*^9, 
+   3.909883444682106*^9, 3.9098836070033283`*^9, {3.909884231413789*^9, 
+   3.9098842519917874`*^9}, 3.9098843174525213`*^9, 3.9098843482568817`*^9, 
+   3.9098843910146875`*^9, 3.9098844233447075`*^9, 3.9104263312166634`*^9, 
+   3.9104264207039204`*^9, 3.9104265095595703`*^9, 3.910426598578413*^9, {
+   3.9104322416877112`*^9, 3.9104322711514845`*^9}},
+ CellLabel->"Out[63]=",ExpressionUUID->"6a705bd6-790a-4071-8916-e57137756f70"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi_ 2 : count = 88", "Subsection",
+ CellChangeTimes->{{3.9104263612804527`*^9, 
+  3.9104263702027617`*^9}},ExpressionUUID->"63bc4f73-3ad5-4797-93c9-\
+8971a5d108db"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l10", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.98068"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.80404"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.60916"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "7.45815"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "9.3045"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "10.5705"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "11.7367"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "12.769"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "13.4662"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p10", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l10", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Red"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9104264245665894`*^9, 3.9104264299961047`*^9}, {
+  3.910426523342211*^9, 3.9104265763152547`*^9}},
+ CellLabel->"In[64]:=",ExpressionUUID->"e4e9ac1b-2ca5-411d-8fc7-e77675f67466"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.98068}, {4., 3.80404}, {6., 5.60916}, {8., 7.45815}, {
+       10., 9.3045}, {12., 10.5705}, {14., 11.7367}, {16., 12.769}, {18., 
+       13.4662}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.98068}}, {{4., 3.80404}}, {{6., 5.60916}}, {{8., 7.45815}}, {{10., 
+      9.3045}}, {{12., 10.5705}}, {{14., 11.7367}}, {{16., 12.769}}, {{18., 
+      13.4662}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 13.4662}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.910426432609557*^9, 3.9104265774778614`*^9, {3.9104322417751365`*^9, 
+   3.9104322712345448`*^9}},
+ CellLabel->"Out[65]=",ExpressionUUID->"7cbb85fa-ed01-4dc0-8114-ab0ae8d8fd06"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p9", ",", "p10", ",", 
+   RowBox[{"PlotRange", "->", "All"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.910426802226259*^9, 3.9104268050206957`*^9}},
+ CellLabel->"In[66]:=",ExpressionUUID->"69cfaf63-875f-45ef-956d-31877d7a83c1"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.94746}, {4., 3.68482}, {6., 5.33375}, {8., 6.83948}, {
+        10., 8.24712}, {12., 9.3376}, {14., 9.94837}, {16., 10.7427}, {18., 
+        11.1312}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.94746}}, {{4., 3.68482}}, {{6., 5.33375}}, {{8., 6.83948}}, {{10., 
+       8.24712}}, {{12., 9.3376}}, {{14., 9.94837}}, {{16., 10.7427}}, {{18., 
+       11.1312}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.98068}, {4., 3.80404}, {6., 5.60916}, {8., 7.45815}, {
+        10., 9.3045}, {12., 10.5705}, {14., 11.7367}, {16., 12.769}, {18., 
+        13.4662}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.98068}}, {{4., 3.80404}}, {{6., 5.60916}}, {{8., 7.45815}}, {{10., 
+       9.3045}}, {{12., 10.5705}}, {{14., 11.7367}}, {{16., 12.769}}, {{18., 
+       13.4662}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->All,
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9104268056681404`*^9, {3.910432241820426*^9, 3.910432271284811*^9}},
+ CellLabel->"Out[66]=",ExpressionUUID->"f9136bd4-8162-4565-b5bb-5a2cffa55fe7"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel_1: count = 46", "Subsection",
+ CellChangeTimes->{{3.9098831495149612`*^9, 3.9098831540560884`*^9}, {
+  3.9104263236242685`*^9, 
+  3.9104263237514257`*^9}},ExpressionUUID->"ed2c061a-aba0-46d0-8175-\
+782d33cf7d35"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l11", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.96554"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.68723"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.30871"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.78653"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "8.15134"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "9.10412"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "9.62005"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "10.0646"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "10.2397"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p11", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l11", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", "Blue", "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+  3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+  3.909881218721159*^9}, {3.909881282967498*^9, 3.9098815163326697`*^9}, {
+  3.9098816117307167`*^9, 3.9098816152842507`*^9}, {3.9098816675374947`*^9, 
+  3.909881720356346*^9}, {3.909882056858619*^9, 3.909882110894191*^9}, {
+  3.909882374397482*^9, 3.9098823771524687`*^9}, {3.9098825029936886`*^9, 
+  3.9098825501931343`*^9}, {3.910426608102462*^9, 3.9104266747001*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"eb4b13a5-3acb-4e02-b5c4-a490b2664304"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      LineBox[{{2., 1.96554}, {4., 3.68723}, {6., 5.30871}, {8., 6.78653}, {
+       10., 8.15134}, {12., 9.10412}, {14., 9.62005}, {16., 10.0646}, {18., 
+       10.2397}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.96554}}, {{4., 3.68723}}, {{6., 5.30871}}, {{8., 6.78653}}, {{10., 
+      8.15134}}, {{12., 9.10412}}, {{14., 9.62005}}, {{16., 10.0646}}, {{18., 
+      10.2397}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 10.2397}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.909881500655596*^9, 3.90988151700526*^9}, 
+   3.9098817225792875`*^9, {3.909882111662512*^9, 3.909882118176177*^9}, {
+   3.9098825510225716`*^9, 3.9098825590483613`*^9}, 3.9098828223732224`*^9, 
+   3.9098828980139184`*^9, 3.909883220275359*^9, 3.909883444775933*^9, 
+   3.90988360706588*^9, {3.9098842314606276`*^9, 3.90988425203868*^9}, 
+   3.9098843175152617`*^9, 3.9098843483355174`*^9, 3.9098843910771847`*^9, 
+   3.909884423407219*^9, 3.9104263312786965`*^9, {3.9104266706480618`*^9, 
+   3.9104266753157673`*^9}, {3.910432241906355*^9, 3.910432271368943*^9}},
+ CellLabel->"Out[68]=",ExpressionUUID->"29f0994c-3877-4dd6-9be1-edb67123a356"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel_ 2 : count = 46", "Subsection",
+ CellChangeTimes->{{3.910426690253812*^9, 3.91042669147093*^9}, {
+  3.910426753119527*^9, 
+  3.9104267568087807`*^9}},ExpressionUUID->"d8cbaac9-084e-4c64-894a-\
+bfaab3508053"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l12", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.97211"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.76999"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.53876"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "7.33012"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "9.06396"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "10.0736"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "10.8589"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "11.215"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "11.3829"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p12", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l12", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Blue"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.910426698742012*^9, 3.9104267708219824`*^9}},
+ CellLabel->"In[69]:=",ExpressionUUID->"76d698d1-de91-42ff-a0c5-1c19b3a12eec"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.97211}, {4., 3.76999}, {6., 5.53876}, {8., 7.33012}, {
+       10., 9.06396}, {12., 10.0736}, {14., 10.8589}, {16., 11.215}, {18., 
+       11.3829}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.97211}}, {{4., 3.76999}}, {{6., 5.53876}}, {{8., 7.33012}}, {{10., 
+      9.06396}}, {{12., 10.0736}}, {{14., 10.8589}}, {{16., 11.215}}, {{18., 
+      11.3829}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 11.3829}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.910426748369521*^9, 3.91042677145389*^9}, {
+  3.91043224197029*^9, 3.9104322714528008`*^9}},
+ CellLabel->"Out[70]=",ExpressionUUID->"6981a0a7-ce96-4c5e-8f13-42f1e06d8941"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p11", ",", "p12", ",", 
+   RowBox[{"PlotRange", "->", "All"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.910426774843918*^9, 3.910426788696762*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"cc36c565-6dac-4baf-b85c-f302bf94e6b5"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.96554}, {4., 3.68723}, {6., 5.30871}, {8., 6.78653}, {
+        10., 8.15134}, {12., 9.10412}, {14., 9.62005}, {16., 10.0646}, {18., 
+        10.2397}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.96554}}, {{4., 3.68723}}, {{6., 5.30871}}, {{8., 6.78653}}, {{10., 
+       8.15134}}, {{12., 9.10412}}, {{14., 9.62005}}, {{16., 10.0646}}, {{18.,
+        10.2397}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.97211}, {4., 3.76999}, {6., 5.53876}, {8., 7.33012}, {
+        10., 9.06396}, {12., 10.0736}, {14., 10.8589}, {16., 11.215}, {18., 
+        11.3829}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.97211}}, {{4., 3.76999}}, {{6., 5.53876}}, {{8., 7.33012}}, {{10., 
+       9.06396}}, {{12., 10.0736}}, {{14., 10.8589}}, {{16., 11.215}}, {{18., 
+       11.3829}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->All,
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9104267893907275`*^9, {3.9104322420257225`*^9, 3.910432271522376*^9}},
+ CellLabel->"Out[71]=",ExpressionUUID->"bedbfb9e-65db-47f7-bf9f-f5fa3e9dc046"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p9", ",", "p10", ",", "p11", ",", "p12", ",", 
+   RowBox[{"PlotRange", "->", "All"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9098815201952705`*^9, 3.9098815244039288`*^9}, {
+  3.909882122447386*^9, 3.9098821232461615`*^9}, {3.909882554278465*^9, 
+  3.9098825563596115`*^9}, {3.9104268435923266`*^9, 3.910426854828766*^9}},
+ CellLabel->"In[72]:=",ExpressionUUID->"b6b77572-5fac-4f0a-9b9a-2543e6f5ee0e"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.94746}, {4., 3.68482}, {6., 5.33375}, {8., 6.83948}, {
+        10., 8.24712}, {12., 9.3376}, {14., 9.94837}, {16., 10.7427}, {18., 
+        11.1312}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.94746}}, {{4., 3.68482}}, {{6., 5.33375}}, {{8., 6.83948}}, {{10., 
+       8.24712}}, {{12., 9.3376}}, {{14., 9.94837}}, {{16., 10.7427}}, {{18., 
+       11.1312}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.98068}, {4., 3.80404}, {6., 5.60916}, {8., 7.45815}, {
+        10., 9.3045}, {12., 10.5705}, {14., 11.7367}, {16., 12.769}, {18., 
+        13.4662}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.98068}}, {{4., 3.80404}}, {{6., 5.60916}}, {{8., 7.45815}}, {{10., 
+       9.3045}}, {{12., 10.5705}}, {{14., 11.7367}}, {{16., 12.769}}, {{18., 
+       13.4662}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       LineBox[{{2., 1.96554}, {4., 3.68723}, {6., 5.30871}, {8., 6.78653}, {
+        10., 8.15134}, {12., 9.10412}, {14., 9.62005}, {16., 10.0646}, {18., 
+        10.2397}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.96554}}, {{4., 3.68723}}, {{6., 5.30871}}, {{8., 6.78653}}, {{10., 
+       8.15134}}, {{12., 9.10412}}, {{14., 9.62005}}, {{16., 10.0646}}, {{18.,
+        10.2397}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.97211}, {4., 3.76999}, {6., 5.53876}, {8., 7.33012}, {
+        10., 9.06396}, {12., 10.0736}, {14., 10.8589}, {16., 11.215}, {18., 
+        11.3829}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.97211}}, {{4., 3.76999}}, {{6., 5.53876}}, {{8., 7.33012}}, {{10., 
+       9.06396}}, {{12., 10.0736}}, {{14., 10.8589}}, {{16., 11.215}}, {{18., 
+       11.3829}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->All,
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9098815250289173`*^9, {3.9098821148414497`*^9, 3.9098821240295644`*^9}, {
+   3.9098825570630713`*^9, 3.909882559110843*^9}, 3.9098828224200025`*^9, 
+   3.9098828980919547`*^9, 3.909883220322238*^9, 3.909883444822745*^9, 
+   3.9098836071283236`*^9, {3.9098842314919157`*^9, 3.909884252069917*^9}, 
+   3.909884317578451*^9, 3.9098843483668113`*^9, 3.909884391124055*^9, 
+   3.9098844234388065`*^9, 3.910426331341758*^9, 3.910426855491829*^9, {
+   3.9104322420761385`*^9, 3.910432271550386*^9}},
+ CellLabel->"Out[72]=",ExpressionUUID->"918bcb2b-0a47-4e15-aa38-5c968df04a1c"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["Eps = 0.0001, N = 20000", "Section",
+ CellChangeTimes->{{3.9098809501010637`*^9, 3.909880965149991*^9}, {
+  3.9098826699241576`*^9, 3.9098826701585245`*^9}, {3.909882776153161*^9, 
+  3.909882786537759*^9}},ExpressionUUID->"d13271d0-51ed-457c-aa27-\
+5db8c3799b51"],
+
+Cell[CellGroupData[{
+
+Cell["Jacobi : count = 71", "Subsection",
+ CellChangeTimes->{{3.909883162295865*^9, 
+  3.9098831827662754`*^9}},ExpressionUUID->"50e044df-52cf-4ee5-b758-\
+c16f1ae6ec14"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l13", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.96663"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.74157"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.40969"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.98182"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "8.449"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "9.61039"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "10.245"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "11.0886"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "11.4754"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p13", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l13", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Red"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+   3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+   3.909881218721159*^9}, {3.909881282967498*^9, 3.9098813747041035`*^9}, 
+   3.9098814521268406`*^9, {3.909882674791196*^9, 3.909882752142353*^9}, {
+   3.9098832506248083`*^9, 3.9098832566646256`*^9}, {3.9098833506336803`*^9, 
+   3.909883366121765*^9}, {3.909884342189506*^9, 3.9098843448309484`*^9}, {
+   3.9104322499916477`*^9, 3.910432255532138*^9}},
+ CellLabel->"In[73]:=",ExpressionUUID->"7c89121c-ec03-4a67-a065-92a043aa2fbb"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.96663}, {4., 3.74157}, {6., 5.40969}, {8., 6.98182}, {
+       10., 8.449}, {12., 9.61039}, {14., 10.245}, {16., 11.0886}, {18., 
+       11.4754}}]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.96663}}, {{4., 3.74157}}, {{6., 5.40969}}, {{8., 6.98182}}, {{10., 
+      8.449}}, {{12., 9.61039}}, {{14., 10.245}}, {{16., 11.0886}}, {{18., 
+      11.4754}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 11.4754}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.909881378648678*^9, 3.9098814541123037`*^9, 3.909882117861866*^9, 
+   3.909882558282221*^9, 3.909882755161121*^9, 3.909882822498143*^9, 
+   3.9098828981716957`*^9, 3.9098832204159822`*^9, 3.9098832573021436`*^9, {
+   3.9098833556910124`*^9, 3.909883367968398*^9}, 3.9098834449012113`*^9, 
+   3.90988360720747*^9, {3.909884231554378*^9, 3.9098842521168795`*^9}, 
+   3.90988431764097*^9, 3.909884348461725*^9, 3.9098843911865473`*^9, 
+   3.9098844234865713`*^9, 3.9104263314199753`*^9, {3.9104322421423116`*^9, 
+   3.9104322716394215`*^9}},
+ CellLabel->"Out[74]=",ExpressionUUID->"311ae8fb-d947-4e10-8a5c-7750e04d100d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Zeidel: count = 38", "Subsection",
+ CellChangeTimes->{{3.9098831928964047`*^9, 
+  3.90988321594372*^9}},ExpressionUUID->"9e6147c3-7d64-4990-b7a3-\
+66651f30d589"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"l14", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"2", ",", "1.9671"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"4", ",", "3.69932"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"6", ",", "5.31348"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"8", ",", "6.79489"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"10", ",", "8.11648"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", "8.2973"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"14", ",", "8.50611"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"16", ",", "8.8253"}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"18", ",", "9.17629"}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"p14", "=", 
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"l14", ",", 
+    RowBox[{"Frame", "->", "True"}], ",", 
+    RowBox[{"PlotTheme", "\[Rule]", "\"\<Detailed\>\""}], ",", 
+    RowBox[{"PlotMarkers", "->", 
+     RowBox[{"{", 
+      RowBox[{"\[FilledCircle]", ",", " ", "8"}], "}"}]}], ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"{", 
+      RowBox[{"Dashed", ",", "Blue"}], "}"}]}], ",", 
+    RowBox[{"LabelStyle", "\[Rule]", 
+     RowBox[{"{", 
+      RowBox[{"12", ",", 
+       RowBox[{"GrayLevel", "[", "0", "]"}], ",", "Bold", ",", "Italic"}], 
+      "}"}]}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.9098809713144226`*^9, 3.9098809848227477`*^9}, {
+  3.9098810623769007`*^9, 3.909881095645341*^9}, {3.909881148020105*^9, 
+  3.909881218721159*^9}, {3.909881282967498*^9, 3.9098815163326697`*^9}, {
+  3.909882685793931*^9, 3.909882691588696*^9}, {3.9098828424425745`*^9, 
+  3.909882895257682*^9}, {3.909884312124293*^9, 3.909884339512772*^9}, {
+  3.9098843725772076`*^9, 3.9098843838966722`*^9}, {3.9104322593247375`*^9, 
+  3.9104322636616535`*^9}},
+ CellLabel->"In[75]:=",ExpressionUUID->"8e0e10e6-b229-4cbc-aaf8-ffd9028d6ad3"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], 
+      LineBox[{{2., 1.9671}, {4., 3.69932}, {6., 5.31348}, {8., 6.79489}, {
+       10., 8.11648}, {12., 8.2973}, {14., 8.50611}, {16., 8.8253}, {18., 
+       9.17629}}]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+       StyleBox["\[FilledCircle]",
+        StripOnInput->False,
+        GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+          PointSize[
+           Rational[7, 360]], 
+          AbsoluteThickness[1.6], 
+          Dashing[{Small, Small}], 
+          RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+      1.9671}}, {{4., 3.69932}}, {{6., 5.31348}}, {{8., 6.79489}}, {{10., 
+      8.11648}}, {{12., 8.2973}}, {{14., 8.50611}}, {{16., 8.8253}}, {{18., 
+      9.17629}}}]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 9.17629}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.909881500655596*^9, 3.90988151700526*^9}, 
+   3.909882117955945*^9, 3.9098825583918047`*^9, 3.909882822576586*^9, 
+   3.9098828982661858`*^9, 3.9098832204784813`*^9, 3.9098834449640083`*^9, 
+   3.9098836072707624`*^9, {3.909884231632596*^9, 3.9098842521800995`*^9}, {
+   3.909884315852771*^9, 3.909884317704376*^9}, {3.9098843485244956`*^9, 
+   3.9098843912647123`*^9}, 3.9098844235337873`*^9, 3.910426331483429*^9, {
+   3.9104322421945004`*^9, 3.910432271695952*^9}},
+ CellLabel->"Out[76]=",ExpressionUUID->"16784972-df0a-4797-b6a8-a1e5e31f4fef"]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.909883371758541*^9, 3.909883433421307*^9}, {
+  3.9098834978036804`*^9, 3.909883529341309*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"4a4e29d4-69a5-4b45-b993-c6c20ebd0066"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Show", "[", 
+  RowBox[{"p13", ",", "p14"}], "]"}]], "Input",
+ CellChangeTimes->{{3.909883627757452*^9, 3.9098836311868143`*^9}, {
+  3.910432266961753*^9, 3.9104322691797185`*^9}},
+ CellLabel->"In[78]:=",ExpressionUUID->"3bd3c56d-3987-43c9-96a8-2ba8085aafac"],
+
+Cell[BoxData[
+ GraphicsBox[{{{}, {{{}, {}, 
+      {RGBColor[1, 0, 0], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.96663}, {4., 3.74157}, {6., 5.40969}, {8., 6.98182}, {
+        10., 8.449}, {12., 9.61039}, {14., 10.245}, {16., 11.0886}, {18., 
+        11.4754}}]}}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[1, 0, 0]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.96663}}, {{4., 3.74157}}, {{6., 5.40969}}, {{8., 6.98182}}, {{10., 
+       8.449}}, {{12., 9.61039}}, {{14., 10.245}}, {{16., 11.0886}}, {{18., 
+       11.4754}}}]}}, {{}, {}}}, {{}, {{{}, {}, 
+      {RGBColor[0, 0, 1], PointSize[
+        NCache[
+         Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+       Dashing[{Small, Small}], 
+       LineBox[{{2., 1.9671}, {4., 3.69932}, {6., 5.31348}, {8., 6.79489}, {
+        10., 8.11648}, {12., 8.2973}, {14., 8.50611}, {16., 8.8253}, {18., 
+        9.17629}}]}}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      Dashing[{Small, Small}], GeometricTransformationBox[InsetBox[
+        StyleBox["\[FilledCircle]",
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[
+            Rational[7, 360]], 
+           AbsoluteThickness[1.6], 
+           Dashing[{Small, Small}], 
+           RGBColor[0, 0, 1]]}], {0., 0.}, Automatic, Offset[8]], {{{2., 
+       1.9671}}, {{4., 3.69932}}, {{6., 5.31348}}, {{8., 6.79489}}, {{10., 
+       8.11648}}, {{12., 8.2973}}, {{14., 8.50611}}, {{16., 8.8253}}, {{18., 
+       9.17629}}}]}}, {{}, {}}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, False},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameStyle->Automatic,
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{Automatic, Automatic},
+  GridLinesStyle->Directive[
+    GrayLevel[0.4, 0.5], 
+    AbsoluteThickness[1], 
+    AbsoluteDashing[{1, 2}]],
+  LabelStyle->{12, 
+    GrayLevel[0], Bold, Italic},
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 18.}, {0, 11.4754}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9098836315904584`*^9, {3.909884231695059*^9, 3.9098842522264895`*^9}, 
+   3.909884317767019*^9, 3.9098843485714135`*^9, 3.909884391311533*^9, 
+   3.9098844235802455`*^9, 3.910426331530766*^9, {3.9104322422676115`*^9, 
+   3.9104322717648897`*^9}},
+ CellLabel->"Out[78]=",ExpressionUUID->"fa80bf9b-140d-4a06-a799-65f207479e6f"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+},
+WindowSize->{949, 461},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+Magnification:>0.5 Inherited,
+FrontEndVersion->"13.1 for Microsoft Windows (64-bit) (June 16, 2022)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"3cf1625c-f000-473a-a4c9-42a2aefd8004"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 169, 3, 33, "Section",ExpressionUUID->"ae246a8e-2003-4b9e-85b4-9d9df3feb34a"],
+Cell[CellGroupData[{
+Cell[774, 29, 168, 3, 27, "Subsection",ExpressionUUID->"d8654ae7-717c-44d9-8dde-6a74d7c39b86"],
+Cell[CellGroupData[{
+Cell[967, 36, 1826, 46, 32, "Input",ExpressionUUID->"e12c7104-8d39-4351-afa0-48fef88126d0"],
+Cell[2796, 84, 2531, 63, 122, "Output",ExpressionUUID->"516dac23-6bed-49ca-9dcc-fd3c07d17fde"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5376, 153, 168, 3, 27, "Subsection",ExpressionUUID->"af43c3a5-8394-4629-9836-8d9e311fde05"],
+Cell[CellGroupData[{
+Cell[5569, 160, 1695, 44, 32, "Input",ExpressionUUID->"0db18117-ba86-4e52-98bf-430442ce8334"],
+Cell[7267, 206, 2477, 63, 124, "Output",ExpressionUUID->"f70b87f2-e56a-4201-ac9e-c0508a8ee014"]
+}, Open  ]],
+Cell[9759, 272, 325, 4, 18, "Input",ExpressionUUID->"69caa07e-58af-48a5-b3bc-6dd2a3e75bd0"],
+Cell[CellGroupData[{
+Cell[10109, 280, 231, 4, 22, "Input",ExpressionUUID->"8e2f4c84-3727-408d-acc2-0eb7292158c0"],
+Cell[10343, 286, 3796, 88, 122, "Output",ExpressionUUID->"2e993c40-240d-4b31-82d6-154c62ecf791"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[14200, 381, 224, 4, 28, "Section",ExpressionUUID->"f694cf94-f4d4-4a67-8b25-0922900b5444"],
+Cell[CellGroupData[{
+Cell[14449, 389, 170, 3, 27, "Subsection",ExpressionUUID->"cd6a989c-012f-40a5-9a77-47deaa78250d"],
+Cell[CellGroupData[{
+Cell[14644, 396, 1750, 45, 32, "Input",ExpressionUUID->"473a8624-961b-47db-9e53-05da3f808ce1"],
+Cell[16397, 443, 2730, 67, 122, "Output",ExpressionUUID->"aa805641-c4cc-4cf9-a455-24c406ddf7ba"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[19176, 516, 168, 3, 27, "Subsection",ExpressionUUID->"b1bf4e49-6e56-4cd2-a1d0-11e112b56f87"],
+Cell[CellGroupData[{
+Cell[19369, 523, 1794, 45, 32, "Input",ExpressionUUID->"ba8ce52c-b2ce-4256-a2e6-86fc49f4d64f"],
+Cell[21166, 570, 2744, 66, 124, "Output",ExpressionUUID->"3b43e5be-49a1-44ba-8911-e85601a47b0b"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23947, 641, 282, 5, 22, "Input",ExpressionUUID->"3a94d7ac-6797-4ae3-ad62-693466a562d1"],
+Cell[24232, 648, 3793, 88, 122, "Output",ExpressionUUID->"d75622cb-7c34-4943-bcd9-1d181ad55a75"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[28086, 743, 195, 3, 28, "Section",ExpressionUUID->"bba70035-a008-4461-a6d8-a2b718fdb466"],
+Cell[CellGroupData[{
+Cell[28306, 750, 222, 4, 27, "Subsection",ExpressionUUID->"9f02e13f-9dee-4588-9728-8fb682bfa51c"],
+Cell[CellGroupData[{
+Cell[28553, 758, 1793, 45, 32, "Input",ExpressionUUID->"fb60c2fb-6fd7-4d31-9f8b-e1dc58384968"],
+Cell[30349, 805, 2681, 65, 122, "Output",ExpressionUUID->"2a43f106-cec1-4e9a-aef5-cbab298abeb3"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[33079, 876, 221, 4, 27, "Subsection",ExpressionUUID->"a8e16ee7-c3ad-4b0c-9166-7d03fb63cf4d"],
+Cell[CellGroupData[{
+Cell[33325, 884, 1594, 43, 32, "Input",ExpressionUUID->"03da263e-3047-4c99-8f4a-268a27813846"],
+Cell[34922, 929, 2406, 62, 124, "Output",ExpressionUUID->"4378a9d7-a5d4-42a4-bf28-deb222d68d37"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37365, 996, 274, 5, 22, "Input",ExpressionUUID->"7545737d-d725-4c38-9ba4-53dac37793f7"],
+Cell[37642, 1003, 3333, 82, 125, "Output",ExpressionUUID->"6c180b50-1be0-4cc5-8e01-f009bab34137"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[41024, 1091, 221, 4, 27, "Subsection",ExpressionUUID->"45ca8279-4c87-4ff6-bcf8-0f6126dc42f4"],
+Cell[CellGroupData[{
+Cell[41270, 1099, 1862, 46, 32, "Input",ExpressionUUID->"07f0053f-7906-4725-9a71-1cc2cb95bbcb"],
+Cell[43135, 1147, 2699, 65, 122, "Output",ExpressionUUID->"c48e6ec3-3899-415f-a74f-29fb2456dcb4"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45883, 1218, 225, 4, 27, "Subsection",ExpressionUUID->"fb97c1b5-f870-4f2f-8783-0e7b0c54ab9f"],
+Cell[CellGroupData[{
+Cell[46133, 1226, 1494, 41, 32, "Input",ExpressionUUID->"252ac59c-2605-4a79-aca4-5b00a3b56fda"],
+Cell[47630, 1269, 2402, 62, 122, "Output",ExpressionUUID->"8a9fe46e-5661-485c-b0f5-4f1ca51e3061"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[50069, 1336, 315, 6, 22, "Input",ExpressionUUID->"95b73781-115a-4e49-9d45-dcf04a79c56a"],
+Cell[50387, 1344, 3350, 81, 122, "Output",ExpressionUUID->"c16912b8-4e24-4ea9-a70e-a32f42e5a926"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[53774, 1430, 404, 7, 22, "Input",ExpressionUUID->"18d8ba94-76dd-433a-a894-a64a06caf039"],
+Cell[54181, 1439, 5761, 129, 125, "Output",ExpressionUUID->"021977b2-d68e-4323-9a05-af8018ade9bb"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[60003, 1575, 251, 4, 28, "Section",ExpressionUUID->"6463d418-4c58-460b-97b3-ab55975898a3"],
+Cell[CellGroupData[{
+Cell[60279, 1583, 219, 4, 27, "Subsection",ExpressionUUID->"90597d87-ef11-4223-9b81-265b05e701d9"],
+Cell[CellGroupData[{
+Cell[60523, 1591, 1969, 47, 32, "Input",ExpressionUUID->"94e01efa-4778-4c5c-a7e3-b32eafcd2f93"],
+Cell[62495, 1640, 2732, 66, 122, "Output",ExpressionUUID->"6a705bd6-790a-4071-8916-e57137756f70"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65276, 1712, 174, 3, 27, "Subsection",ExpressionUUID->"63bc4f73-3ad5-4797-93c9-8971a5d108db"],
+Cell[CellGroupData[{
+Cell[65475, 1719, 1548, 42, 32, "Input",ExpressionUUID->"e4e9ac1b-2ca5-411d-8fc7-e77675f67466"],
+Cell[67026, 1763, 2360, 62, 124, "Output",ExpressionUUID->"7cbb85fa-ed01-4dc0-8114-ab0ae8d8fd06"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[69423, 1830, 275, 5, 22, "Input",ExpressionUUID->"69cfaf63-875f-45ef-956d-31877d7a83c1"],
+Cell[69701, 1837, 3305, 81, 125, "Output",ExpressionUUID->"f9136bd4-8162-4565-b5bb-5a2cffa55fe7"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73055, 1924, 225, 4, 27, "Subsection",ExpressionUUID->"ed2c061a-aba0-46d0-8175-782d33cf7d35"],
+Cell[CellGroupData[{
+Cell[73305, 1932, 1914, 46, 32, "Input",ExpressionUUID->"eb4b13a5-3acb-4e02-b5c4-a490b2664304"],
+Cell[75222, 1980, 2735, 65, 122, "Output",ExpressionUUID->"29f0994c-3877-4dd6-9be1-edb67123a356"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[78006, 2051, 220, 4, 27, "Subsection",ExpressionUUID->"d8cbaac9-084e-4c64-894a-bfaab3508053"],
+Cell[CellGroupData[{
+Cell[78251, 2059, 1497, 41, 32, "Input",ExpressionUUID->"76d698d1-de91-42ff-a0c5-1c19b3a12eec"],
+Cell[79751, 2102, 2354, 61, 122, "Output",ExpressionUUID->"6981a0a7-ce96-4c5e-8f13-42f1e06d8941"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82142, 2168, 274, 5, 22, "Input",ExpressionUUID->"cc36c565-6dac-4baf-b85c-f302bf94e6b5"],
+Cell[82419, 2175, 3311, 81, 122, "Output",ExpressionUUID->"bedbfb9e-65db-47f7-bf9f-f5fa3e9dc046"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[85767, 2261, 451, 7, 22, "Input",ExpressionUUID->"b6b77572-5fac-4f0a-9b9a-2543e6f5ee0e"],
+Cell[86221, 2270, 5770, 129, 125, "Output",ExpressionUUID->"918bcb2b-0a47-4e15-aa38-5c968df04a1c"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[92052, 2406, 269, 4, 28, "Section",ExpressionUUID->"d13271d0-51ed-457c-aa27-5db8c3799b51"],
+Cell[CellGroupData[{
+Cell[92346, 2414, 169, 3, 27, "Subsection",ExpressionUUID->"50e044df-52cf-4ee5-b758-c16f1ae6ec14"],
+Cell[CellGroupData[{
+Cell[92540, 2421, 1926, 47, 32, "Input",ExpressionUUID->"7c89121c-ec03-4a67-a065-92a043aa2fbb"],
+Cell[94469, 2470, 2798, 68, 125, "Output",ExpressionUUID->"311ae8fb-d947-4e10-8a5c-7750e04d100d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[97316, 2544, 167, 3, 27, "Subsection",ExpressionUUID->"9e6147c3-7d64-4990-b7a3-66651f30d589"],
+Cell[CellGroupData[{
+Cell[97508, 2551, 1897, 47, 32, "Input",ExpressionUUID->"8e0e10e6-b229-4cbc-aaf8-ffd9028d6ad3"],
+Cell[99408, 2600, 2726, 66, 124, "Output",ExpressionUUID->"16784972-df0a-4797-b6a8-a1e5e31f4fef"]
+}, Open  ]],
+Cell[102149, 2669, 222, 3, 18, "Input",ExpressionUUID->"4a4e29d4-69a5-4b45-b993-c6c20ebd0066"],
+Cell[CellGroupData[{
+Cell[102396, 2676, 282, 5, 22, "Input",ExpressionUUID->"3bd3c56d-3987-43c9-96a8-2ba8085aafac"],
+Cell[102681, 2683, 3593, 86, 125, "Output",ExpressionUUID->"fa80bf9b-140d-4a06-a799-65f207479e6f"]
+}, Open  ]]
+}, Open  ]]
+}, Closed]]
+}
+]
+*)
+
